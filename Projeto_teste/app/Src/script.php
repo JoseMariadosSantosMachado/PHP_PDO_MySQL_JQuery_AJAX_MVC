@@ -1,0 +1,9 @@
+<script src="./script/jquery.js" type="text/javascript"></script>
+<script src="./script/bootstrap.js" type="text/javascript"></script>
+<script src="./script/jquery_ui.js" type="text/javascript"></script>
+<script src="./script/sweetalert.js" type="text/javascript"></script>
+<script src="./script/select2.js" type="text/javascript"></script>
+<script src="./script/modal.js" type="text/javascript"></script>
+<script src="./script/mask.js" type="text/javascript"></script>
+<script src="./script/toastr.js" type="text/javascript"></script>
+<script src="./script/adminlte.js" type="text/javascript"></script>
