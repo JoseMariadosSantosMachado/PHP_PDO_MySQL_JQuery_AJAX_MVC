@@ -1,0 +1,43 @@
+#Estrutura das pastas do padrão de projeto:
+
+project_name{
+  app{
+      config.php
+      index.php
+      Config{
+          Conexao.php
+          Reports.php
+          URL.php
+          Views.php
+      }
+      Controllers{
+          #arquivos de controle
+      }
+      Models{
+          #arquivos de manipulação de SQL
+      }
+      Libs{
+          #arquivos de terceiros
+      }
+      Src{
+          #pastas e arquivos do template
+      }
+      Reports{
+          #pastas e arquivos de relatórios
+      }
+      Views{
+          #pastas e arquivos de views
+      }
+  }  
+  public{
+      #pasta root do projeto (página externa)
+      script{
+          #pasta com os arquivos JavaScript
+      }
+      style{
+          #pasta com os aquivos CSS, Font, Icones, Imagens
+      }     
+      index.php
+      .htaccess
+  }
+}
