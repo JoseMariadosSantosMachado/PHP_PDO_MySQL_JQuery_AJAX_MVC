@@ -73,8 +73,6 @@
                 class="btn bg-gradient-secondary">
                 <i class="fa fa-angle-left"></i> Voltar
             </button>
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['C']) && $_SESSION[Config::Permissao]['funcionario']['C'] == 'true' ||
-        isset($_SESSION[Config::Permissao]['funcionario']['U']) && $_SESSION[Config::Permissao]['funcionario']['U'] == 'true'){?>
             <button
                 type="submit"
                 id="<?php echo FUNCIONARIO::MNT;?>A"
@@ -90,19 +88,16 @@
                 title="Clique aqui para Salvar e Fechar"
                 class="btn bg-gradient-<?php echo $_SESSION['btn-color'];?> float-right">
                 <i class="fa fa-save"></i> Salvar e Fechar
-            </button>
-<?php }?>
+            </button>            
          </div>
     </form>
 </div>
 <script>
     var <?php echo FUNCIONARIO::MNT.FUNCIONARIO::codigo;?>="<?php echo $arr_funcionario[0][FUNCIONARIO::codigo];?>";
     var frm_funcionario_mnt=class frm_funcionario_mnt{
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['C']) && $_SESSION[Config::Permissao]['funcionario']['C'] == 'true' ||
-        isset($_SESSION[Config::Permissao]['funcionario']['U']) && $_SESSION[Config::Permissao]['funcionario']['U'] == 'true'){?>
         funcionario_salvar(x){
             var d=new FormData();
-        	  d.append('URL','<?php echo URL::funcionario();?>');
+        	d.append('URL','<?php echo URL::funcionario();?>');
             d.append('M','?');
             d.append('<?php echo FUNCIONARIO::codigo;?>',<?php echo FUNCIONARIO::MNT.FUNCIONARIO::codigo;?>);
             d.append('<?php echo FUNCIONARIO::nome;?>',$('#<?php echo FUNCIONARIO::MNT.FUNCIONARIO::nome;?>').val());
@@ -142,7 +137,7 @@
                 }
             });
         };
-<?php }?>
+        
         fechar(){
            $.post(conexao,{URL:'<?php echo URL::funcionario();?>',M:'V'}).done((r)=>{
                 if(r){
@@ -161,8 +156,6 @@
         <?php echo $form_close;?>
     });
     $(document).ready(()=>{
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['C']) && $_SESSION[Config::Permissao]['funcionario']['C'] == 'true' ||
-        isset($_SESSION[Config::Permissao]['funcionario']['U']) && $_SESSION[Config::Permissao]['funcionario']['U'] == 'true'){?>
         var frm=[];
         for(var i=0;i<document.getElementById('<?php echo FUNCIONARIO::MNT;?>').elements.length;i++){
         	  frm.push(document.getElementById('<?php echo FUNCIONARIO::MNT;?>').elements[i].outerHTML);
@@ -193,7 +186,6 @@
                     }
                 });
             });
-        });
-<?php }?>
+        });        
     });
 </script>
