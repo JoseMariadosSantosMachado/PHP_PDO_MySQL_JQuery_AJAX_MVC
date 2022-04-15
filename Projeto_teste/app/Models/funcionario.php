@@ -73,7 +73,6 @@ class cls_funcionario extends Cls_conexao{
         try{
             if($this->params->execute() !== false){
                 $this->codigo = $this->conexao->lastInsertId();
-	  	          Log::log_create(Session::funcionario_cpf(), __CLASS__, $this->codigo, __FUNCTION__);
                 return true;
             }else{
                 $this->error = $this->conexao->error;
@@ -111,7 +110,6 @@ class cls_funcionario extends Cls_conexao{
 
         try{
             if($this->params->execute() !== false){
-	  	          Log::log_create(Session::funcionario_cpf(), __CLASS__, $this->codigo, __FUNCTION__);
                 return true;
             }else{
                 $this->error = $this->conexao->error;
@@ -140,7 +138,6 @@ class cls_funcionario extends Cls_conexao{
 
         try{
             if($this->params->execute() !== false){
-	  	          Log::log_create(Session::funcionario_cpf(), __CLASS__, $this->codigo, __FUNCTION__);
                 return true;
             }else{
                 $this->error = $this->conexao->error;
@@ -175,46 +172,45 @@ class cls_funcionario extends Cls_conexao{
 
         $this->params->bindParam(':nome', $nome, PDO::PARAM_STR);
 
-
-    	  $arr_funcionario = array();
+  	$arr_funcionario = array();
         try{
             if($this->params->execute() !== false){
-        	      foreach ($this->params as $value) {
-            	      array_push($arr_funcionario,
-                	      array(
-                    	  'codigo'=>$value['codigo'],
-                    	  'nome'=>$value['nome'],
-                    	  'cpf'=>$value['cpf'],
-                    	  'funcao'=>$value['funcao'],
-                    	  'senha'=>$value['senha'],
-                    	  'status'=>$value['status']
+	      	foreach ($this->params as $value) {
+	      		array_push($arr_funcionario,
+				array(
+				  'codigo'=>$value['codigo'],
+				  'nome'=>$value['nome'],
+				  'cpf'=>$value['cpf'],
+				  'funcao'=>$value['funcao'],
+				  'senha'=>$value['senha'],
+				  'status'=>$value['status']
                 	      )
-            	      );
-        	      }
-        	  }
+            	      	);
+	      }
+	  }
         } catch (PDOException $e) {
             echo $query.'<br><br>';
             echo $e->getMessage();
             exit();
         }
-    	  return $arr_funcionario;
-	  }
+  	return $arr_funcionario;
+    }
     /*
     *funcao read para select2 $ajax
     */
     public function select2($nome){
-    	  $query
-            	  = "SELECT "
-            	  . " codigo AS codigo , "
-            	  . " nome AS nome , "
-            	  . " cpf AS cpf , "
-            	  . " funcao AS funcao , "
-            	  . " senha AS senha , "
-            	  . " status AS status "
-            	  . " FROM "
-            	  . " funcionario "
-            	  . " WHERE "
-                . " nome LIKE :nome "
+	  $query
+		  = "SELECT "
+		  . " codigo AS codigo , "
+		  . " nome AS nome , "
+		  . " cpf AS cpf , "
+		  . " funcao AS funcao , "
+		  . " senha AS senha , "
+		  . " status AS status "
+		  . " FROM "
+		  . " funcionario "
+		  . " WHERE "
+		  . " nome LIKE :nome "
             	  . " ORDER BY" 
             	  . " nome" 
             	  . " LIMIT 15;";
@@ -341,7 +337,6 @@ class cls_funcionario extends Cls_conexao{
             echo $e->getMessage();
             exit();
         }
-	  	  Log::log_create(Session::funcionario_cpf(), __CLASS__, $this->codigo, __FUNCTION__);
     	  return $arr_funcionario;
 	  }
     /*
