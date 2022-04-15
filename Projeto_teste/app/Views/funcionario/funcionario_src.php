@@ -20,7 +20,6 @@
                          </a>
                     </div>
                     <input type="text" class="form-control" id="<?php echo FUNCIONARIO::SRC.FUNCIONARIO::nome;?>"/>
-                    <?php if(isset($_SESSION[Config::Permissao]['funcionario']['C']) && $_SESSION[Config::Permissao]['funcionario']['C'] == 'true'){?>
                     <div class="input-group-append">
                         <a class="btn bg-gradient-<?php echo $_SESSION['btn-color'];?>"
                             title="Clique aqui para Inserir novo Funcionario"
@@ -30,8 +29,6 @@
                             <i class="fa fa-plus"></i> Novo
                         </a>
                     </div>
-                    <?php }?>
-                    <?php if(isset($_SESSION[Config::Permissao]['funcionario']['P']) && $_SESSION[Config::Permissao]['funcionario']['P'] == 'true'){?>
                     <div class="input-group-append">
                         <a class="btn bg-gradient-<?php echo $_SESSION['btn-color'];?>"
                             title="Clique aqui para Imprimir Funcionario"
@@ -41,7 +38,6 @@
                             <i class="fa fa-print"></i> Imprimir
                         </a>
                     </div>
-                    <?php }?>
                 </div>
             </div>
             <div class="form-group col-xs-12 col-sm-12 col-md-12">
@@ -104,7 +100,6 @@
             });
         };
 
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['D']) && $_SESSION[Config::Permissao]['funcionario']['D'] == 'true'){?>
         funcionario_excluir(<?php echo FUNCIONARIO::codigo;?>){
             var d=new FormData();
             d.append('URL','<?php echo URL::funcionario();?>');
@@ -137,10 +132,7 @@
                 }
             });
         };
-<?php }?>
-
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['C']) && $_SESSION[Config::Permissao]['funcionario']['C'] == 'true' ||
-         isset($_SESSION[Config::Permissao]['funcionario']['V']) && $_SESSION[Config::Permissao]['funcionario']['V'] == 'true'){?>
+        
         funcionario_mnt(<?php echo FUNCIONARIO::codigo;?>){
             var d=new FormData();
             d.append('URL','<?php echo URL::funcionario();?>');
@@ -164,9 +156,7 @@
                 }
             });
         };
-<?php }?>
-
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['P']) && $_SESSION[Config::Permissao]['funcionario']['P'] == 'true'){?>
+        
         funcionario_print(<?php echo FUNCIONARIO::codigo;?>){
             var d=new FormData();
             d.append('URL','<?php echo URL::funcionario();?>');
@@ -189,9 +179,7 @@
                     //console.log(r);
                 }
             });
-        };
-<?php }?>
-
+        }; 
     };
     var funcionario_scr=new frm_funcionario_scr();
     funcionario_scr.dgv_funcionario();
@@ -209,40 +197,30 @@
         });
     });
 
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['C']) && $_SESSION[Config::Permissao]['funcionario']['C'] == 'true'){?>
     $("#<?php echo FUNCIONARIO::SRC.FUNCIONARIO::btn_novo;?>").click(function(e){
         e.preventDefault();
         funcionario_scr.funcionario_mnt(0);
     });
-<?php }?>
-
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['P']) && $_SESSION[Config::Permissao]['funcionario']['P'] == 'true'){?>
+    
     $("#<?php echo FUNCIONARIO::SRC.FUNCIONARIO::btn_imprimir;?>").click(function(e){
         e.preventDefault();
         funcionario_scr.funcionario_print($(this).attr('value'));
     });
-<?php }?>
-
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['P']) && $_SESSION[Config::Permissao]['funcionario']['P'] == 'true'){?>
+    
     $("#<?php echo FUNCIONARIO::SRC.FUNCIONARIO::dgv_funcionario;?>").on("click","#P",function(e){
         e.preventDefault();
         if(arr_funcionario_p[$(this).closest('tr').index()]===e.currentTarget.outerHTML){
         	 funcionario_scr.funcionario_print(arr_funcionario_p[$(this).closest('tr').index()]);
         }
     });
-<?php }?>
-
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['U']) && $_SESSION[Config::Permissao]['funcionario']['U'] == 'true' ||
-         isset($_SESSION[Config::Permissao]['funcionario']['V']) && $_SESSION[Config::Permissao]['funcionario']['V'] == 'true'){?>
+    
     $("#<?php echo FUNCIONARIO::SRC.FUNCIONARIO::dgv_funcionario;?>").on("click","#V",function(e){
         e.preventDefault();
         if(arr_funcionario_u[$(this).closest('tr').index()]===e.currentTarget.outerHTML){
         	 funcionario_scr.funcionario_mnt(arr_funcionario_v[$(this).closest('tr').index()]);
         }
     });
-<?php }?>
-
-<?php if(isset($_SESSION[Config::Permissao]['funcionario']['D']) && $_SESSION[Config::Permissao]['funcionario']['D'] == 'true'){?>
+    
     $("#<?php echo FUNCIONARIO::SRC.FUNCIONARIO::dgv_funcionario;?>").on("click","#D",function(e){
         e.preventDefault();
         if(arr_funcionario_d[$(this).closest('tr').index()]===e.currentTarget.outerHTML){
@@ -264,6 +242,4 @@
           });
         }
     });
-<?php }?>
-
 </script>
